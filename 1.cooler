@@ -1,0 +1,12 @@
+    	GENERATE	,,,8		; 1  Amount office staff
+    	ADVANCE	4,0.8		; 2  Time to reach the cooler	 
+DRINK	QUEUE	STAND	       ; 3  Queue to the cooler. input	
+    	SEIZE	COOLER	       ; 4  Verification of employment cooler
+    	DEPART	STAND		; 5  Queue to the cooler. output
+    	ADVANCE	2,0.8		; 6  Filling the cup with boiling water
+    	RELEASE	COOLER		; 7  leave the cooler
+    	ADVANCE	60,10		; 8  Time for tea, time to work, time to get back to the cooler				
+    	TRANSFER	,DRINK		; 9  Go back to the cooler
+    	GENERATE	480		; 10 Working day (minutes)
+    	TERMINATE	1		; 11 Minus one minute
+    	START	1		; 12 Start from the first minute
