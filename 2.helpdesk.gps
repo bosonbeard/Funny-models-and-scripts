@@ -1,18 +1,18 @@
-HELPDESK        STORAGE       2	        			 ;1   Number of operators helpdesk
+HELPDESK        STORAGE       2	        		   ;1   Number of operators helpdesk
 **************************************************************************************************
-	GENERATE        6,3					 ;2   The number of subscribers Ticket
-	ADVANCE         (Exponential(1,0,2)),,			 ;3   during dialing
-          ENTER            HELPDESK              			 ;4   incoming call
-	TRANSFER         ALL,OPR1,OPR2,3       			 ;5   definition of operator availability
-OPR1      SEIZE            OP1                               ;6   Verification of employment operator number 1
+	GENERATE        6,3				   ;2   The number of subscribers Ticket
+	ADVANCE         (Exponential(1,0,2)),,		   ;3   during dialing
+        ENTER           HELPDESK              	   ;4   incoming call
+	TRANSFER        ALL,OPR1,OPR2,3       		   ;5   definition of operator availability
+OPR1    SEIZE           OP1                             ;6   Verification of employment operator number 1
 	ASSIGN          1,OP1                              ;7   If the operator is free in this case, accept a call
 	TRANSFER        ,COME                              ;8   Jump to the process of service
-OPR2      SEIZE            OP2                               ;9   Verification of employment operator number 1.
+OPR2    SEIZE           OP2                             ;9   Verification of employment operator number 1.
 	ASSIGN          1,OP2                              ;10  If the operator is free in this case, accept a call
-COME      LEAVE            HELPDESK                          ;11  Beginning the process of providing technical support
-	ADVANCE         10,8              			 ;12  Service time
-	RELEASE          P1                                ;13  The release of the operator
-	TERMINATE       0                      			 ;14  Removes the Active Transaction from the simulation
+COME    LEAVE           HELPDESK                        ;11  Beginning the process of providing technical support
+	ADVANCE         10,8              		   ;12  Service time
+	RELEASE         P1                                ;13  The release of the operator
+	TERMINATE       0                      		   ;14  Removes the Active Transaction from the simulation
 	GENERATE        480                                ;15  Working day (minutes)
 	TERMINATE       1                                  ;16  Minus one minute
-	    START           1                                  	 ;17  Start from the first minute
+	START           1                              ;17  Start from the first minute
