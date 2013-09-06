@@ -6,7 +6,7 @@ some simulation models of various processes (just for fun)
 
 The collection of models "GPSS-WORLD" and another scripts
 
-description of "GPSS-WORLD models and Scilab scripts:
+description of GPSS-WORLD models and Scilab scripts:
 
 1. Cooler. (GPSS)
 Congestion office water cooler. if employees are drinking tea
