@@ -14,7 +14,7 @@ set(mw,'figure_name','Tick-tack-toe');
 //status Bar
 label1=uicontrol('Style', 'text', 'Position', [80,400,250,20], 'String',..
 'Game in progress (click on the square button)','HorizontalAlignment','left');
-//the creation of the game window
+//the creation of the restart button
 ubutton_c=uicontrol(mw,'Style','pushbutton','position',[80,380,120,20]..
 ,'String','Restart game','CallBack','newgame()');
 
