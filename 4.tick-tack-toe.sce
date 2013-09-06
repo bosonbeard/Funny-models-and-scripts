@@ -26,7 +26,7 @@ for i=1:9
     x=i-((y-1)*3);
     ubutton(i)=uicontrol(mw,'Style','pushbutton','position',[80*x+2,80*y,80,80]..
     ,'String',' ','CallBack','press_button('+num+')');
-end;
+end
 
 
 
@@ -34,6 +34,7 @@ function y=press_button(button_num)
     //gaming activities
     global ffield;
     global Win;
+  
     // Human
     Button_Value=get(ubutton(button_num),'String');
     if Button_Value==" " then
@@ -48,7 +49,9 @@ function y=press_button(button_num)
             ct=comp_turn();  //get random action of AI
             buf=get(ubutton(ct),'String');
         end
+    
         set(ubutton(ct),'String',"0"); // Ai chooses cell
+    end
         ffield=ffield+1;  //counter filled cells
         Winner() //find game winner
 endfunction
