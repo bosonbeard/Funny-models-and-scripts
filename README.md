@@ -1,8 +1,7 @@
-
 Funny-models-and-scripts
-(old name Funny-GPSS-world-models)
 =================================
 
+(old name Funny-GPSS-world-models)
 some simulation models of various processes (just for fun)
 
 The collection of models "GPSS-WORLD" and another scripts
