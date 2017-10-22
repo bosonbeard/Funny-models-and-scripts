@@ -20,5 +20,5 @@ count apples GPSS)
 4. tick-tack-toe (Scilab)
 single player game base on scilab.
 
-5. family_registered_habr (Python 3)
-Machine Analysis of information about births, registration of marriages, deaths, etc. in the notebook Jupyter (Ipython 3)
+5. family_registered_habr (Python 3)  
+Machine Analysis of information about births, registration of marriages, deaths, etc. in the notebook Jupyter
