@@ -23,5 +23,6 @@ single player game base on scilab.
 5. family_registered_habr (Python 3)  
 Machine Analysis of information about births, registration of marriages, deaths, etc. in the notebook Jupyter
 
-6.startfor81.cs (C#)
+6. startfor81.cs (C#)
 The class with a command for Nanocad 8 (MultiCAD API)
+
