@@ -26,3 +26,5 @@ Machine Analysis of information about births, registration of marriages, deaths,
 6. startfor81.cs (C#)
 The class with a command for Nanocad 8 (MultiCAD API)
 
+7. Examples of user pseudo-three-dimensional classes for Nanocad 8 (and 5.1) for MultiCAD.NET API
+
