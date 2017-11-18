@@ -24,15 +24,18 @@ using Multicad;
 
 namespace nanodoor2
 {
-        //change "8b0986c0-4163-42a4-b005-187111b499d7" for your Guid from AssemblyInfo.cs for your Project
-    
-        [CustomEntity(typeof(DoorPseudo3D), "8b0986c0-4163-42a4-b005-187111b499d7", "DoorPseudo3D", "DoorPseudo3D Sample Entity")]
+    //change "8b0986c0-4163-42a4-b005-187111b499d7" for your Guid from Assembly.
+    // Be careful GUID for door and wall classes must be different! 
+    // Otherwise there will be problems with saving and moving
+
+
+    [CustomEntity(typeof(DoorPseudo3D), "8b0986c0-4163-42a4-b005-187111b499d9", "DoorPseudo3D", "DoorPseudo3D Sample Entity")]
         [Serializable]
         public class DoorPseudo3D : McCustomBase
         {
             // First and second vertices of the box
             private Point3d _pnt1 = new Point3d(0, 0, 0);
-            private double _h = 2485;
+            private double _h = 2085;
             private Vector3d _vecStraightDirection = new Vector3d(1, 0, 0);
             private Vector3d _vecDirectionClosed =  new Vector3d(1, 0, 0);
             public enum status { closed , middle, open   };
@@ -73,11 +76,11 @@ namespace nanodoor2
             dc.DrawLine(pnt4, pnt4.Add(hvec));
 
             // Drawing a Door Handle
-            dc.DrawLine(pnt2.Add(new Vector3d( - 190, -0, _h*0.55)), 
-                pnt2.Add(new Vector3d(-100, 0, _h * 0.55)));
+            dc.DrawLine(pnt2.Add(new Vector3d( - 190, -0, _h*0.45)), 
+                pnt2.Add(new Vector3d(-100, 0, _h * 0.45)));
 
-            dc.DrawLine(pnt3.Add(new Vector3d(-190, 0, _h * 0.55)),
-                pnt3.Add(new Vector3d(-100, 0, _h * 0.55)));
+            dc.DrawLine(pnt3.Add(new Vector3d(-190, 0, _h * 0.45)),
+                pnt3.Add(new Vector3d(-100, 0, _h * 0.45)));
 
             // Create contours for the front and rear sides and hatch them
             // In this demo, we hatch only two sides, you can tailor the others yourself

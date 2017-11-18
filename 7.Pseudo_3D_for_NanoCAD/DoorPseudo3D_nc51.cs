@@ -25,16 +25,18 @@ using Multicad;
 
 namespace nanodoor2
 {
-    //change "b4edac1f-7978-483f-91b1-10503d20735a" for your Guid from AssemblyInfo.cs for your Project
+    //change "8b0986c0-4163-42a4-b005-187111b499d7" for your Guid from Assembly.
+    // Be careful GUID for door and wall classes must be different! 
+    // Otherwise there will be problems with saving and moving
 
-    [CustomEntity(typeof(DoorPseudo3D_nc51), "b4edac1f-7978-483f-91b1-10503d20735a", "DoorPseudo3D_nc51", "DoorPseudo3D_nc51 Sample Entity")]
+    [CustomEntity(typeof(DoorPseudo3D_nc51), "b4edac1f-7978-483f-91b1-10503d20735b", "DoorPseudo3D_nc51", "DoorPseudo3D_nc51 Sample Entity")]
         [Serializable]
         public class DoorPseudo3D_nc51 : McCustomBase
         {
             // First and second vertices of the box
             private Point3d _pnt1 = new Point3d(0, 0, 0);
             private double _scale = 1000;
-            private double _h = 2485;
+            private double _h = 2085;
             private Vector3d _vecStraightDirection = new Vector3d(1, 0, 0);
             private Vector3d _vecDirectionClosed =  new Vector3d(1, 0, 0);
             public enum status { closed , middle, open   };
@@ -76,11 +78,11 @@ namespace nanodoor2
             dc.DrawLine(pnt4, pnt4.Add(hvec));
 
             // Drawing a Door Handle
-            dc.DrawLine(pnt2.Add(new Vector3d( -190 * _scale, -0, _h*0.55 * _scale)), 
-                pnt2.Add(new Vector3d(-100 * _scale, 0, _h * 0.55 * _scale)));
+            dc.DrawLine(pnt2.Add(new Vector3d( -190 * _scale, -0, _h*0.45 * _scale)), 
+                pnt2.Add(new Vector3d(-100 * _scale, 0, _h * 0.45 * _scale)));
 
-            dc.DrawLine(pnt3.Add(new Vector3d(-190 * _scale, 0, _h * 0.55 * _scale)),
-                pnt3.Add(new Vector3d(-100 * _scale, 0, _h * 0.55 * _scale)));
+            dc.DrawLine(pnt3.Add(new Vector3d(-190 * _scale, 0, _h * 0.45 * _scale)),
+                pnt3.Add(new Vector3d(-100 * _scale, 0, _h * 0.45 * _scale)));
 
 
         }

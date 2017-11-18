@@ -22,7 +22,9 @@ using Multicad;
 
 namespace nanowall2
 {
-    //change "8b0986c0-4163-42a4-b005-187111b499d7" for your Guid from AssemblyInfo.cs for your Project
+    //change "8b0986c0-4163-42a4-b005-187111b499d7" for your Guid from Assembly.
+    // Be careful GUID for door and wall classes must be different! 
+    // Otherwise there will be problems with saving and moving
     [CustomEntity(typeof(WalllPseudo3D), "8b0986c0-4163-42a4-b005-187111b499d7", "WalllPseudo3D", "WalllPseudo3D Sample Entity")]
         [Serializable]
         public class WalllPseudo3D : McCustomBase
@@ -30,7 +32,7 @@ namespace nanowall2
             // First and second vertices of the box
             private Point3d _pnt1 = new Point3d(100, 100, 0);
             private Point3d _pnt2 = new Point3d(500, 100, 0);
-            private double _h = 2485;
+            private double _h = 2085;
             public enum status { closed , middle, open   };
             public  status _dStatus;
 
