@@ -38,7 +38,7 @@ namespace nanodoor2
             private Vector3d _vecStraightDirection = new Vector3d(1, 0, 0);
             private Vector3d _vecDirectionClosed =  new Vector3d(1, 0, 0);
             public enum status { closed , middle, open   };
-            public  status _dStatus;
+            private status _dStatus = status.closed;
 
 
 
@@ -236,7 +236,7 @@ namespace nanodoor2
 
 
     // TODO: There are many shortcomings in this code. 
-    // Including failures when working with copying and moving objects, you can improve it if you want.
+    // Including failures when working with copying, moving objects and saving files, you can improve it if you want.
 
 }
 

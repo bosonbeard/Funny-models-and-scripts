@@ -88,7 +88,7 @@ namespace nanowall2
         //Define the custom properties of the object
         [DisplayName("Height")]
         [Description("Height of wall")]
-        [Category("Door options")]
+        [Category("Wall options")]
         public double HWall
         {
             get
@@ -148,7 +148,7 @@ namespace nanowall2
     }
 
     // TODO: There are many shortcomings in this code. 
-    // Including failures when working with copying and moving objects, you can improve it if you want.
+    // Including failures when working with copying, moving objects and saving files, you can improve it if you want.
 
 
 }

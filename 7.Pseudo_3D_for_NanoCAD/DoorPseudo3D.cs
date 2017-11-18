@@ -36,7 +36,7 @@ namespace nanodoor2
             private Vector3d _vecStraightDirection = new Vector3d(1, 0, 0);
             private Vector3d _vecDirectionClosed =  new Vector3d(1, 0, 0);
             public enum status { closed , middle, open   };
-            public  status _dStatus;
+            private  status _dStatus = status.closed;
 
 
 
@@ -192,7 +192,7 @@ namespace nanodoor2
 
                 // Change the rotation vector for each of the door states
                 switch (value)
-                    {
+                {
                     case status.closed:
                         _vecStraightDirection = _vecDirectionClosed;
                     break;
@@ -201,10 +201,10 @@ namespace nanodoor2
                     break;
                     case status.open:
                         _vecStraightDirection = _vecDirectionClosed.GetPerpendicularVector()*-1;
-                        break;
+                    break;
 
                     default:
-                        
+                        _vecStraightDirection = _vecDirectionClosed;
                     break;
                 }
 
@@ -224,7 +224,7 @@ namespace nanodoor2
     }
 
     // TODO: There are many shortcomings in this code. 
-    // Including failures when working with copying and moving objects, you can improve it if you want.
+    // Including failures when working with copying, moving objects and saving files, you can improve it if you want.
 
 
 

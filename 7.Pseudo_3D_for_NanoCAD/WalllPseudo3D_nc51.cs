@@ -157,7 +157,7 @@ namespace nanowall2
     }
 
     // TODO: There are many shortcomings in this code. 
-    // Including failures when working with copying and moving objects, you can improve it if you want.
+    // Including failures when working with copying, moving objects and saving files, you can improve it if you want.
 
 
 }
