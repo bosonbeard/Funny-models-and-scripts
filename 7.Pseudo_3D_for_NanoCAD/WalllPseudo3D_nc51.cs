@@ -33,8 +33,7 @@ namespace nanowall2
             private Point3d _pnt1 = new Point3d(100, 100, 0);
             private Point3d _pnt2 = new Point3d(500, 100, 0);
             private double _h = 2085;
-            public enum status { closed , middle, open   };
-            public  status _dStatus;
+
             private double _scale = 1000;
 
         [CommandMethod("DrawWall", CommandFlags.NoCheck | CommandFlags.NoPrefix)]
