@@ -40,9 +40,6 @@ namespace nanowall2
         [CommandMethod("DrawWall", CommandFlags.NoCheck | CommandFlags.NoPrefix)]
         public void DrawWall() {
 
-            
-            
-
             WalllPseudo3D wall = new WalllPseudo3D();
             wall.PlaceObject();
       
@@ -54,8 +51,8 @@ namespace nanowall2
             
             // Define the basic points for drawing
             Point3d pnt1 = _pnt1;
-            Point3d pnt2 = new Point3d(_pnt2.X + 984, pnt1.Y, 0);
-            Point3d pnt3 = new Point3d(pnt2.X + 0, pnt1.Y+150, 0);
+            Point3d pnt2 = new Point3d(_pnt2.X, pnt1.Y, 0);
+            Point3d pnt3 = new Point3d(pnt2.X, pnt1.Y+150, 0);
             Point3d pnt4 = new Point3d(pnt1.X , pnt3.Y, 0);
             // Set the color to ByObject value
             dc.Color = McDbEntity.ByObject;
@@ -142,6 +139,7 @@ namespace nanowall2
         public override bool GetGripPoints(GripPointsInfo info)
         {
             info.AppendGrip(new McSmartGrip<WalllPseudo3D>(_pnt1, (obj, g, offset) => { obj.TryModify(); obj._pnt1 += offset; }));
+            info.AppendGrip(new McSmartGrip<WalllPseudo3D>(_pnt2, (obj, g, offset) => { obj.TryModify(); obj._pnt2 += offset; }));
             return true;
         }
 

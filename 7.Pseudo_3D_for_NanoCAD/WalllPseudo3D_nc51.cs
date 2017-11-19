@@ -53,8 +53,8 @@ namespace nanowall2
             dc.Clear();
             // Define the basic points for drawing
             Point3d pnt1 = _pnt1;
-            Point3d pnt2 = new Point3d(_pnt2.X + (984 * _scale), pnt1.Y, 0);
-            Point3d pnt3 = new Point3d(pnt2.X + 0, pnt1.Y+(150 * _scale), 0);
+            Point3d pnt2 = new Point3d(_pnt2.X, pnt1.Y, 0);
+            Point3d pnt3 = new Point3d(pnt2.X, pnt1.Y+(150 * _scale), 0);
             Point3d pnt4 = new Point3d(pnt1.X , pnt3.Y, 0);
             // Set the color to ByObject value
             dc.Color = McDbEntity.ByObject;
@@ -151,6 +151,7 @@ namespace nanowall2
         public override bool GetGripPoints(GripPointsInfo info)
         {
             info.AppendGrip(new McSmartGrip<WalllPseudo3D_nc51>(_pnt1, (obj, g, offset) => { obj.TryModify(); obj._pnt1 += offset; }));
+            info.AppendGrip(new McSmartGrip<WalllPseudo3D_nc51>(_pnt2, (obj, g, offset) => { obj.TryModify(); obj._pnt2 += offset; }));
             return true;
         }
 
