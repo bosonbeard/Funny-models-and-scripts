@@ -1,4 +1,5 @@
-﻿//Use Microsoft .NET Framework 3.5 and old version of MultiCad.NET (for NC 5.1)
+﻿ // Version 1.0
+//Use Microsoft .NET Framework 3.5 and old version of MultiCad.NET (for NC 5.1)
 //Class for demonstrating the capabilities of MultiCad.NET
 //Assembly for the Nanocad 5.1 
 //Link mapimgd from Nanocad SDK
