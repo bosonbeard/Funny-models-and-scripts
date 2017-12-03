@@ -37,10 +37,11 @@ namespace nanodoor2
     // Otherwise there will be problems with saving and moving
 
 
+
     [CustomEntity(typeof(DoorPseudo3D), "8b0986c0-4163-42a4-b005-187111b499d9", "DoorPseudo3D", "DoorPseudo3D Sample Entity")]
-        [Serializable]
-        public class DoorPseudo3D : McCustomBase
-        {
+    [Serializable]
+    public class DoorPseudo3D : McCustomBase
+    {
             // First and second vertices of the box
             private Point3d _pnt1 = new Point3d(0, 0, 0);
             private double _h = 2085;
@@ -52,9 +53,10 @@ namespace nanodoor2
             //added in V 1.1. (monitor fileds)
             private bool _monitor = false;
             private string _monFilePath = @"E:\test.txt";
-            FileSystemEventHandler _watchHandler;
-            FileSystemWatcher _watcher;
-
+            [NonSerialized]
+            private FileSystemWatcher _watcher ;
+            [NonSerialized]
+            private FileSystemEventHandler _watchHandler;
 
 
         [CommandMethod("DrawDoor", CommandFlags.NoCheck | CommandFlags.NoPrefix)]
@@ -236,7 +238,7 @@ namespace nanodoor2
             info.AppendGrip(new McSmartGrip<DoorPseudo3D>(_pnt1, (obj, g, offset) => { obj.TryModify(); obj._pnt1 += offset; }));
             return true;
         }
-
+       
         //Define the monitoring custom properties , added v. 1.1:
 
         // added in v. 1.1
@@ -329,11 +331,11 @@ namespace nanodoor2
         }
 
         // added in v. 1.1
-        private void OnChanged(object source, FileSystemEventArgs e)
+        private  void OnChanged(object source, FileSystemEventArgs e)
         {
 
             McContext.ShowNotification("File: " + e.FullPath + " " + e.ChangeType);
-
+          
             //read new value from file
             try
             {
@@ -353,10 +355,10 @@ namespace nanodoor2
                                 {
 
 
-                                    if (!TryModify())  return;
-                                    Stat = (Status)mStatus; 
+                                    if (!this.TryModify())  return;
+                                    this.Stat = (Status)mStatus; 
                                     if (!TryModify()) return;
-                                    DbEntity.Update();
+                                    this.DbEntity.Update();
                                     McContext.ExecuteCommand("REGENALL");
                                     McContext.ShowNotification("Door state is changed");
 
@@ -379,11 +381,11 @@ namespace nanodoor2
             {
                 _watcher.EnableRaisingEvents = true; // reconnect tracking
             }
-
+          
         }
 
 
-
+     
 
      
 

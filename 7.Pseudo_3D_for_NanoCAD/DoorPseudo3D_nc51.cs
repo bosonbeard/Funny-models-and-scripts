@@ -58,11 +58,12 @@ namespace nanodoor2
             private Mon _monitor = Mon.off;
             
             private string _monFilePath = @"E:\test.txt";
-            FileSystemEventHandler _watchHandler;
-            FileSystemWatcher _watcher;
+            [NonSerialized]
+            private FileSystemWatcher _watcher;
+            [NonSerialized]
+            private FileSystemEventHandler _watchHandler;
 
-            
-            
+
 
         [CommandMethod("DrawDoor", CommandFlags.NoCheck | CommandFlags.NoPrefix)]
         public void DrawDoor() {
