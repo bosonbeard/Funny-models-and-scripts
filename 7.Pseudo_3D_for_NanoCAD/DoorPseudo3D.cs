@@ -1,4 +1,4 @@
-﻿//Version 1.0
+﻿//// Version 1.1
 //Use Microsoft .NET Framework 4 and MultiCad.NET API 7.0
 //Class for demonstrating the capabilities of MultiCad.NET
 //Assembly for the Nanocad 8.5 SDK is recommended (however, it is may be possible in the all 8.Х family)
@@ -8,7 +8,9 @@
 //This code in the part of non-infringing rights Nanosoft can be used and distributed in any accessible ways.
 //For the consequences of the code application, the developer is not responsible.
 
-//More detailed - https://habrahabr.ru/post/342680/
+// V 1.0. More detailed - https://habrahabr.ru/post/342680/
+// V 1.1. More detailed - https://habrahabr.ru/post/343772/
+
 // P.S. A big thanks to Alexander Vologodsky for help in developing a method for pivoting object.
 
 
@@ -21,6 +23,11 @@ using Multicad.DatabaseServices;
 using Multicad.Geometry;
 using Multicad.CustomObjectBase;
 using Multicad;
+
+//added in V 1.1. for monitoring
+using System.Security.Permissions;
+using System.IO;
+using Multicad.AplicationServices;
 
 
 namespace nanodoor2
@@ -39,10 +46,14 @@ namespace nanodoor2
             private double _h = 2085;
             private Vector3d _vecStraightDirection = new Vector3d(1, 0, 0);
             private Vector3d _vecDirectionClosed =  new Vector3d(1, 0, 0);
-            public enum status { closed , middle, open   };
-            private  status _dStatus = status.closed;
+            public enum Status { closed , middle, open   };
+            private  Status _dStatus = Status.closed;
 
-
+            //added in V 1.1. (monitor fileds)
+            private bool _monitor = false;
+            private string _monFilePath = @"E:\test.txt";
+            FileSystemEventHandler _watchHandler;
+            FileSystemWatcher _watcher;
 
 
 
@@ -145,7 +156,7 @@ namespace nanodoor2
             this._vecStraightDirection = this._vecStraightDirection.TransformBy(tfm);
 
             // We move the door only when it is closed if not - undo
-            if (_dStatus == status.closed) _vecDirectionClosed = _vecStraightDirection;
+            if (_dStatus == Status.closed) _vecDirectionClosed = _vecStraightDirection;
             else
             {
                 MessageBox.Show("Please transform only closed door");
@@ -182,7 +193,7 @@ namespace nanodoor2
         [DisplayName("Door status")]
         [Description("Door may be: closed, middle, open")]
         [Category("Door options")]
-        public status Stat
+        public Status Stat
         {
             get
             {
@@ -197,13 +208,13 @@ namespace nanodoor2
                 // Change the rotation vector for each of the door states
                 switch (value)
                 {
-                    case status.closed:
+                    case Status.closed:
                         _vecStraightDirection = _vecDirectionClosed;
                     break;
-                    case status.middle:
+                    case Status.middle:
                         _vecStraightDirection = _vecDirectionClosed.Add(_vecDirectionClosed.GetPerpendicularVector().Negate() * 0.575) ;
                     break;
-                    case status.open:
+                    case Status.open:
                         _vecStraightDirection = _vecDirectionClosed.GetPerpendicularVector()*-1;
                     break;
 
@@ -217,12 +228,163 @@ namespace nanodoor2
             }
         }
 
+
         // Create a grip for the base point of the object
+
         public override bool GetGripPoints(GripPointsInfo info)
         {
-            info.AppendGrip(new McSmartGrip<DoorPseudo3D>(_pnt1, (obj, g, offset) => { obj.TryModify(); obj._pnt1 += offset;  }));
+            info.AppendGrip(new McSmartGrip<DoorPseudo3D>(_pnt1, (obj, g, offset) => { obj.TryModify(); obj._pnt1 += offset; }));
             return true;
         }
+
+        //Define the monitoring custom properties , added v. 1.1:
+
+        // added in v. 1.1
+        [DisplayName("Monitoring")]
+        [Description("Monitoring of file for door")]
+        [Category("Monitoring")]
+        public bool Monitor
+        {
+            get
+            {
+                return _monitor;
+            }
+            set
+            {
+                //Save Undo state and set the object status to "Changed"
+                if (!TryModify())
+                    return;
+
+
+                _monitor = value;
+                if (_monitor)
+                {
+                    StartMonitoring();
+                }
+                else StopMonitoring();
+
+            }
+        }
+
+        // added in v. 1.1
+
+        [DisplayName("File path for Monitoring")]
+        [Description("Monitoring of file for door")]
+        [Category("Monitoring")]
+        public string MonitoringFilPath
+        {
+            get
+            {
+                return _monFilePath;
+            }
+            set
+            {
+
+                //for hot change filename
+                if (Monitor)
+                {
+                    StopMonitoring();
+                    if (!TryModify())
+                        return;
+
+                    _monFilePath = value;
+                    StartMonitoring();
+                    McContext.ShowNotification("Monitored file is changed");
+                }
+                else
+                {
+                    //Save Undo state and set the object status to "Changed"
+                    if (!TryModify())
+                        return;
+
+                    _monFilePath = value;
+                }
+                
+            }
+        }
+
+        //Define the methods, added v. 1.1:
+        // added in v. 1.1
+        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+        public void StartMonitoring()
+        {
+            _watcher = new FileSystemWatcher();
+            if (File.Exists(_monFilePath))
+            {
+                _watcher.Path = Path.GetDirectoryName(_monFilePath);
+                _watcher.Filter = Path.GetFileName(_monFilePath);
+                _watchHandler = new FileSystemEventHandler(OnChanged);
+                _watcher.Changed += _watchHandler;
+                _watcher.EnableRaisingEvents = true;
+            }
+            else McContext.ShowNotification("File: " + _monFilePath + " " + "not Exists");
+        }
+
+        // added in v. 1.1
+        public void StopMonitoring()
+        {
+            _watcher.Changed -= _watchHandler;
+            _watcher.EnableRaisingEvents = false;
+
+        }
+
+        // added in v. 1.1
+        private void OnChanged(object source, FileSystemEventArgs e)
+        {
+
+            McContext.ShowNotification("File: " + e.FullPath + " " + e.ChangeType);
+
+            //read new value from file
+            try
+            {
+
+                if (File.Exists(_monFilePath))
+                {
+                    int mStatus = -1;
+                    McContext.ShowNotification("File exists ");
+
+                    using (StreamReader sr = new StreamReader(new FileStream(_monFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)))
+                    {
+                        if (sr.BaseStream.CanRead)
+                        {
+                            if (int.TryParse(sr.ReadLine(), out mStatus))
+                            {
+                                if (Enum.IsDefined(typeof(Status), mStatus))
+                                {
+
+
+                                    if (!TryModify())  return;
+                                    Stat = (Status)mStatus; 
+                                    if (!TryModify()) return;
+                                    DbEntity.Update();
+                                    McContext.ExecuteCommand("REGENALL");
+                                    McContext.ShowNotification("Door state is changed");
+
+                                }
+                                else McContext.ShowNotification("Incorrect data in the file. Should be in diapason: 0, 1, 2 ");
+                            }
+
+                        }
+                        else McContext.ShowNotification("Can't read file ");
+                    }
+
+                }
+                else McContext.ShowNotification("File not exists  ");
+
+
+
+                _watcher.EnableRaisingEvents = false; // disable tracking
+            }
+            finally
+            {
+                _watcher.EnableRaisingEvents = true; // reconnect tracking
+            }
+
+        }
+
+
+
+
      
 
     }
