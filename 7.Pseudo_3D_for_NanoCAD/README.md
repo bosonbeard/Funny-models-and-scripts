@@ -6,5 +6,5 @@ Classes with the suffix _nc51 are designed for the free version of NanoCAD 5.1
 .dwg files for test how work dll (for NC 8.5 and NC 5.1)
 You must load .dll (Netload command) first and next open the .dwg files (if not, they will be read as proxy objects)
 
-for V 1.0. more detailed - https://habrahabr.ru/post/342680/
+for V 1.0. more detailed - https://habrahabr.ru/post/342680/  
 for V 1.1. more detailed - https://habrahabr.ru/post/343772/
