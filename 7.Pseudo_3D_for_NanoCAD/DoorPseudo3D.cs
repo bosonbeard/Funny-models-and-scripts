@@ -47,12 +47,13 @@ namespace nanodoor2
             private double _h = 2085;
             private Vector3d _vecStraightDirection = new Vector3d(1, 0, 0);
             private Vector3d _vecDirectionClosed =  new Vector3d(1, 0, 0);
-            public enum Status { closed , middle, open   };
+            public enum Status {closed , middle, open   };
             private  Status _dStatus = Status.closed;
 
             //added in V 1.1. (monitor fileds)
             private bool _monitor = false;
             private string _monFilePath = @"E:\test.txt";
+            // if it's Serialized you can't copy the object in CAD editor
             [NonSerialized]
             private FileSystemWatcher _watcher ;
             [NonSerialized]
@@ -325,8 +326,11 @@ namespace nanodoor2
         // added in v. 1.1
         public void StopMonitoring()
         {
+            if (_watcher != null & _watchHandler != null)
+            { 
             _watcher.Changed -= _watchHandler;
             _watcher.EnableRaisingEvents = false;
+            }
 
         }
 
@@ -349,18 +353,20 @@ namespace nanodoor2
                     {
                         if (sr.BaseStream.CanRead)
                         {
+                            McContext.ShowNotification("can read ");
                             if (int.TryParse(sr.ReadLine(), out mStatus))
                             {
+                                McContext.ShowNotification("parse correct ");
                                 if (Enum.IsDefined(typeof(Status), mStatus))
                                 {
 
-
-                                    if (!this.TryModify())  return;
-                                    this.Stat = (Status)mStatus; 
+                                    if (!TryModify())  return;
+                                    Stat = (Status) mStatus; 
                                     if (!TryModify()) return;
-                                    this.DbEntity.Update();
-                                    McContext.ExecuteCommand("REGENALL");
+                                    if (!DbEntity.Update()) return;
                                     McContext.ShowNotification("Door state is changed");
+                                    McContext.ExecuteCommand("REGENALL");
+                                    
 
                                 }
                                 else McContext.ShowNotification("Incorrect data in the file. Should be in diapason: 0, 1, 2 ");

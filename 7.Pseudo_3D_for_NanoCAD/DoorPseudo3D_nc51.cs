@@ -58,6 +58,8 @@ namespace nanodoor2
             private Mon _monitor = Mon.off;
             
             private string _monFilePath = @"E:\test.txt";
+
+        // if it is serialized, you may not be able to copy the object in the CAD editor
             [NonSerialized]
             private FileSystemWatcher _watcher;
             [NonSerialized]
@@ -358,10 +360,12 @@ namespace nanodoor2
     // added in v. 1.1
     public void StopMonitoring()
     {
-        _watcher.Changed -= _watchHandler;
-        _watcher.EnableRaisingEvents = false;
-
-    }
+            if (_watcher != null & _watchHandler != null)
+            {
+                _watcher.Changed -= _watchHandler;
+                _watcher.EnableRaisingEvents = false;
+            }
+        }
 
     // added in v. 1.1
     private void OnChanged(object source, FileSystemEventArgs e)
