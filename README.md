@@ -1,7 +1,9 @@
-This folder was changed on December 26, 2017 in order to reorganize the repository space.
+Funny-models-and-scripts
 =================================
 
-(old name Funny-GPSS-world-models)
+(old name Funny-GPSS-world-models)  
+  
+This folder was changed on December 26, 2017 in order to reorganize the repository space.  
 
 The folder contains materials mainly prepared for the site Habrahabr.ru   
 This repository is made just for fun
