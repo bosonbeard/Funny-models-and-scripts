@@ -1,4 +1,4 @@
-﻿//Use Microsoft .NET Framework 4 and old version of MultiCad.NET (for NC 8.X)
+﻿//Use Microsoft .NET Framework 4 and version of MultiCad.NET (for NC 8.X)
 //Class for demonstrating the capabilities of MultiCad.NET
 //Assembly for the Nanocad 8.X 
 //Link mapimgd and mapibasetypes from Nanocad SDK
