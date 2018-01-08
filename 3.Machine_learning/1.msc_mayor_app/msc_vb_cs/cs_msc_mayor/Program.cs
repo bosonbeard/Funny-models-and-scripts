@@ -15,23 +15,23 @@ namespace cs_msc_mayor
        
         static void Main(string[] args)
         {
-
+            //for separating the training and test samples
             int traintPos = 18;
             int testPos = 22;
             int allData = testPos + (testPos - traintPos);
 
 
-            //for correct symbol of float point
+            //for correct reading symbol of float point in csv
             System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
 
-            //read data (If you use linux do not forget to correct the path to the files)
+            //read data
             string CsvFilePath = @"msc_appel_data.csv";
             DataTable mscTable = new CsvReader(CsvFilePath, true).ToTable();
 
-
+            //for encoding the string values of months into numerical values
             Dictionary<string, double> monthNames = new Dictionary<string, double>
             {
                 ["January"] = 1,
@@ -58,46 +58,59 @@ namespace cs_msc_mayor
                 dMonths[i] = monthNames[months[i]];
                 //Console.WriteLine(dMonths[i]);
             }
-            double[] totalAppeals = mscTable.Columns["total_appeals"].ToArray();
-            double[] years = mscTable.Columns["year"].ToArray();
+
+            //select the target column
             double[] OutResPositive = mscTable.Columns["res_positive"].ToArray();
 
+            // separation of the test and train target sample
             double[] OutResPositiveTrain = OutResPositive.Get(0, traintPos);
             double[] OutResPositiveTest = OutResPositive.Get(traintPos, testPos);
 
+            //deleting unneeded columns
+            mscTable.Columns.Remove("total_appeals");
+            mscTable.Columns.Remove("month");
+            mscTable.Columns.Remove("res_positive");
+            mscTable.Columns.Remove("year");
+
+            //receiving input data from a table
+            double[][] inputs = mscTable.ToArray();
+
+            //separation of the test and train sample
+            double[][] inputsTrain= inputs.Get(0, traintPos);
+            double[][] inputsTest = inputs.Get(traintPos, testPos);
+
+
+
+            //simple linear regression model
             var ols = new OrdinaryLeastSquares()
             {
                 UseIntercept = true
             };
 
-            mscTable.Columns.Remove("month");
-            mscTable.Columns.Remove("res_positive");
-            mscTable.Columns.Remove("year");
-            double[][] inputs = mscTable.ToArray();
+            //linear regression model for several features
+            MultipleLinearRegression regression = ols.Learn(inputsTrain, OutResPositiveTrain);
 
-            double[][] inputsTrain= inputs.Get(0, traintPos);
-            double[][] inputsTest = inputs.Get(traintPos, testPos);
-
-
-          
-
-           MultipleLinearRegression regression = ols.Learn(inputsTrain, OutResPositiveTrain);
-
+            //make a prediction
             double[] predicted = regression.Transform(inputsTest);
 
             //console output
+
             for (int i = 0; i < testPos - traintPos; i++)
             {
                 Console.WriteLine("predicted: {0}   real: {1}", predicted[i], OutResPositiveTest[i]);
             }
-            // And the squared error using the SquareLoss class:
+            // And  print the squared error using the SquareLoss class:
             Console.WriteLine("error = {0}", new SquareLoss(OutResPositiveTest).Loss(predicted));
 
-            double r2 = new RSquaredLoss(numberOfInputs: 29, expected: OutResPositiveTest).Loss(predicted); // should be 1
+            // print the coefficient of determination
+            double r2 = new RSquaredLoss(numberOfInputs: 29, expected: OutResPositiveTest).Loss(predicted); 
             Console.WriteLine("R^2 = {0}", r2);
-            
 
-            Console.WriteLine("Press enter to exit");
+            // alternative print the coefficient of determination
+            double ur2 = regression.CoefficientOfDetermination(inputs, OutResPositiveTest, adjust: true);
+            Console.WriteLine("alternative version of R2 = {0}", r2);
+
+            Console.WriteLine("Press enter and close chart to exit");
 
             // for chart 
 
@@ -120,16 +133,17 @@ namespace cs_msc_mayor
 
                 
             }
+
+            // make points of chart
             List<double> OutChart = new List<double>();
             OutChart.AddRange(OutResPositive);
             OutChart.AddRange(predicted);
 
            
-
-
+            // plot chart
             ScatterplotBox.Show("res_positive from months", mountX, OutChart.ToArray(), classes).Hold();
 
-
+            // for pause
             Console.ReadLine();
         }
     }
