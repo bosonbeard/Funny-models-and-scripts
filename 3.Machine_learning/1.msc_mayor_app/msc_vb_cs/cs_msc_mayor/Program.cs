@@ -72,8 +72,28 @@ namespace cs_msc_mayor
             mscTable.Columns.Remove("res_positive");
             mscTable.Columns.Remove("year");
 
+
+            //add coded in a double column month into Table
+
+            //create new column
+            DataColumn newCol = new DataColumn("dMonth", typeof(double));
+            newCol.AllowDBNull = true;
+            // add new column
+            mscTable.Columns.Add(newCol);
+
+            //fill new column
+            int counter = 0;
+            foreach (DataRow row in mscTable.Rows)
+            {
+                row["dMonth"] = dMonths[counter];
+                counter++;
+            }
+
+
             //receiving input data from a table
             double[][] inputs = mscTable.ToArray();
+
+            
 
             //separation of the test and train sample
             double[][] inputsTrain= inputs.Get(0, traintPos);

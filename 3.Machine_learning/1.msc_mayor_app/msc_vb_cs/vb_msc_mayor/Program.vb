@@ -1,6 +1,4 @@
-﻿'http://converter.telerik.com/
-'accods control, accord io
-
+﻿
 Imports System
 Imports System.Linq
 Imports Accord.Statistics.Models.Regression.Linear
@@ -50,6 +48,23 @@ Module Program
         mscTable.Columns.Remove("month")
         mscTable.Columns.Remove("res_positive")
         mscTable.Columns.Remove("year")
+
+        'add coded in a double column month into Table
+        'create new column
+
+        Dim newCol As DataColumn = New DataColumn("dMonth", GetType(Double))
+        newCol.AllowDBNull = True
+
+        'add new column
+        mscTable.Columns.Add(newCol)
+
+        'fill new column
+        Dim counter As Integer = 0
+        For Each row As DataRow In mscTable.Rows
+            row("dMonth") = dMonths(counter)
+            counter += 1
+        Next
+
 
         'receiving input data from a table
         Dim inputs As Double()() = mscTable.ToArray()
