@@ -4,7 +4,8 @@ A set of data on citizens' appeals to the executive power of the city of Moscow 
 for details see msc_app_to_mayor.ipynb or https://habrahabr.ru/post/343216/
 
 ____________________________________________________________________________________________________________
-msc_appel_data.csv is data for all project collected manual from  https://www.mos.ru/feedback/reviews/, where:
+msc_appel_data.csv is data for all project collected manual from  https://www.mos.ru/feedback/reviews/, where:  
+
 num - Record index  
 year is the year of recording  
 month - recording month  
