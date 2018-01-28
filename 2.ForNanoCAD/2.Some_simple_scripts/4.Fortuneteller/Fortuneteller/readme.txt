@@ -1,6 +1,6 @@
 Fortuneteller project version 1.0.
 
-A library for demonstrating the capabilities of MultiCad. NO (C#).
+A library for demonstrating the capabilities of MultiCAD.NET API (C#).
 This build for SDK Nanocad 8.5 SDK (however it is possible in all families 8.X)
 Libraries are not included.
 You can find them in the "bin" folder of the installed Nanosad 8.
