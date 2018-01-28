@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1D6F09BC-F7D6-42F6-840A-6C013E1D1C4E}</ProjectGuid>
+    <ProjectGuid>{879593A5-4449-464C-A48C-900050C47889}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Fortuneteller</RootNamespace>
-    <AssemblyName>Fortuneteller</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>Fortuneteller_NC51</RootNamespace>
+    <AssemblyName>Fortuneteller_NC51</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,16 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="imapimgd">
-      <HintPath>C:\Program Files\Nanosoft\nanoCAD x64 Plus 8.5\SDK\include-x64\imapimgd.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="mapibasetypes">
-      <HintPath>C:\Program Files\Nanosoft\nanoCAD x64 Plus 8.5\SDK\include-x64\mapibasetypes.dll</HintPath>
+    <Reference Include="hostmgd">
+      <HintPath>C:\Program Files (x86)\Nanosoft\nanoCAD 5.1\SDK\include\hostmgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="mapimgd">
-      <HintPath>C:\Program Files\Nanosoft\nanoCAD x64 Plus 8.5\SDK\include-x64\mapimgd.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Nanosoft\nanoCAD 5.1\SDK\include\mapimgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -48,7 +44,6 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -63,14 +58,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ListEditorForm.resx">
-      <DependentUpon>ListEditorForm.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="readme.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ListEditorForm.resx">
+      <DependentUpon>ListEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

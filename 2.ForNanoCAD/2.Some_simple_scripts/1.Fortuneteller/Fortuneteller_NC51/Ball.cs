@@ -1,8 +1,8 @@
-﻿// Version 0.1
-//Use Microsoft .NET Framework 4 and MultiCad.NET API 7.0
+﻿// Version 1.0
+//Use Microsoft .NET Framework 3.5 and MultiCad.NET API 
 //Class for demonstrating the capabilities of MultiCad.NET
-//Assembly for the Nanocad 8.5 SDK is recommended (however, it is may be possible in the all 8.Х family)
-//Link imapimgd, mapimgd.dll and mapibasetypes.dll from SDK
+//Assembly for the Nanocad 5.1 SDK is recommended 
+//Link mapimgd.dll and hostmgd.dll  from SDK
 //Link System.Windows.Forms and System.Drawing
 //The commands: draws a fortune-teller ball 
 //This code in the part of non-infringing rights Nanosoft can be used and distributed in any accessible ways.
@@ -20,11 +20,13 @@ using Multicad.DatabaseServices;
 using Multicad.Geometry;
 using Multicad.CustomObjectBase;
 using Multicad;
-using Multicad.AplicationServices;
+using HostMgd.ApplicationServices;
+using HostMgd.EditorInput;
+
 
 namespace Fortuneteller
 {
-    [CustomEntity(typeof(Ball), "2e814ea6-f1f0-469d-9767-269fedb32226", "Ball", "Fortuneteller Ball for NC85 Entity")]
+    [CustomEntity(typeof(Ball), "2e814ea6-f1f0-469d-9767-269fedb32195", "Ball", "Fortuneteller Ball for NC51 Entity")]
     [Serializable]
     public class Ball : McCustomBase
     {
@@ -91,7 +93,10 @@ namespace Fortuneteller
         {
             Ball ball = new Ball();
             ball.PlaceObject();
-            McContext.ShowNotification("Use green grip or shake (move) ball to get prediction");
+            DocumentCollection dm = HostMgd.ApplicationServices.Application.DocumentManager;
+            Editor ed = dm.MdiActiveDocument.Editor;
+            ed.WriteMessage("Use green grip or shake (move) ball to get prediction");
+
         }
 
         public override bool GetGripPoints(GripPointsInfo info)
