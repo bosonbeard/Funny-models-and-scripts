@@ -31,7 +31,6 @@ namespace Fortuneteller
 
         private Point3d _basePnt = new Point3d(0, 0, 0);
         double _radius=300;
-        int _shakes = 0;
         string _predText = "...";
 
         public List<String> predictions =
