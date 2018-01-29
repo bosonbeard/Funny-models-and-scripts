@@ -42,14 +42,14 @@
             this.Lpredictions.ItemHeight = 16;
             this.Lpredictions.Location = new System.Drawing.Point(17, 21);
             this.Lpredictions.Name = "Lpredictions";
-            this.Lpredictions.Size = new System.Drawing.Size(353, 148);
+            this.Lpredictions.Size = new System.Drawing.Size(378, 148);
             this.Lpredictions.TabIndex = 0;
             // 
             // textBox
             // 
             this.textBox.Location = new System.Drawing.Point(17, 201);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(353, 22);
+            this.textBox.Size = new System.Drawing.Size(378, 22);
             this.textBox.TabIndex = 3;
             // 
             // DelBtn
@@ -74,9 +74,9 @@
             // 
             // SaceBtn
             // 
-            this.SaceBtn.Location = new System.Drawing.Point(252, 241);
+            this.SaceBtn.Location = new System.Drawing.Point(250, 241);
             this.SaceBtn.Name = "SaceBtn";
-            this.SaceBtn.Size = new System.Drawing.Size(118, 23);
+            this.SaceBtn.Size = new System.Drawing.Size(145, 23);
             this.SaceBtn.TabIndex = 6;
             this.SaceBtn.Text = "Save and close";
             this.SaceBtn.UseVisualStyleBackColor = true;
@@ -95,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 284);
+            this.ClientSize = new System.Drawing.Size(413, 284);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.SaceBtn);
             this.Controls.Add(this.AdBtn);

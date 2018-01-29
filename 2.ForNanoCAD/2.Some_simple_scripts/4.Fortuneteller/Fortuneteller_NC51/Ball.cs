@@ -88,7 +88,7 @@ namespace Fortuneteller
         }
 
         [CommandMethod("DFTBall", CommandFlags.NoCheck | CommandFlags.NoPrefix)]
-        public void DrawDoor()
+        public void DrawBall()
         {
             Ball ball = new Ball();
             ball.PlaceObject();
