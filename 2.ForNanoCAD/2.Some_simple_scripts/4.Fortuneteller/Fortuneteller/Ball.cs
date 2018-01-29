@@ -1,4 +1,4 @@
-﻿// Version 0.1
+﻿// Version 1.0
 //Use Microsoft .NET Framework 4 and MultiCad.NET API 7.0
 //Class for demonstrating the capabilities of MultiCad.NET
 //Assembly for the Nanocad 8.5 SDK is recommended (however, it is may be possible in the all 8.Х family)

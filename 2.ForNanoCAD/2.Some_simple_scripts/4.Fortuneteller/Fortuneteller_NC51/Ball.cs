@@ -170,13 +170,7 @@ namespace Fortuneteller
 
         }
 
-
-   
     }
-
-
-
-
 
 }
 

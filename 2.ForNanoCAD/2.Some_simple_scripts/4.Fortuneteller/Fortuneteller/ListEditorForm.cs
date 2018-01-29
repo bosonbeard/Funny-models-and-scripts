@@ -54,5 +54,7 @@ namespace Fortuneteller
             ball.predictions = Lpredictions.Items.OfType<String>().ToList();
             this.Close();
         }
+
+
     }
 }
