@@ -22,5 +22,8 @@ Classes for work with Nanocad to articles on Habrahabr.ru
 3. Machine_learning
 Some models of machine learning for articles on Habrahabr.ru  
 
+4. For_FreeCad
+Experiments and simple programs for FreeCAD with used Python for articles on Habrahabr.ru  
+
 To view the old version, you can refer to past commits for example:  
 https://github.com/bosonbeard/Funny-models-and-scripts/tree/2cfb29f3b376c6542df3f39c8df24b80e1a8e501
