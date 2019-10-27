@@ -15,6 +15,7 @@ Used Accord,NET Framework and Anaconda Jupyter Notebbok. Datasets relevant to th
 2. family_registered_habr (Python 3)  
 Machine Analysis of information about births, registration of marriages, deaths, etc. in the notebook Jupyter
 
+
 3.ml.net_mayor 
 A set of data on citizens' appeals to the executive power of the city of Moscow 
 Used ML.NET framework. Datasets relevant to the 2019.
