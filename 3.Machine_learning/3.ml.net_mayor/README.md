@@ -4,8 +4,7 @@ A set of data on citizens' appeals to the executive power of the city of Moscow 
 for details see msc_app_to_mayor.ipynb or https://habrahabr.ru/post/343216/
 
 ____________________________________________________________________________________________________________
-In Data folder:
-msc_appel_data2.csv is collected manual dataset  from  https://www.mos.ru/feedback/reviews/, where:  
+In app_to_mayor_mlnet\Data folder or in standalone file msc_appel_data2.csv are located  dataset from  https://www.mos.ru/feedback/reviews/, where:  
 
 num - Record index  
 year is the year of recording  
