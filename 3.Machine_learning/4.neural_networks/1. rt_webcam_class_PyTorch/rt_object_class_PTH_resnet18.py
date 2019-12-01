@@ -9,12 +9,11 @@ import time
 import cv2
 import os
 
-#args_prototxt="D:\\prog\\NateLabs\\Chip-visual-inspection\\Tests\\camera detect\\MobileNetSSD_deploy.prototxt.txt"
+
 path=os.path.join(os.path.abspath(os.curdir) , 'my_resnet18.onnx')
 args_confidence = 0.2
 
-# initialize the list of class labels MobileNet SSD was trained to
-# detect, then generate a set of bounding box colors for each class
+# initialize the list of class labels 
 CLASSES = ['raspberry', 'someduino']
 
 # load our serialized model from disk

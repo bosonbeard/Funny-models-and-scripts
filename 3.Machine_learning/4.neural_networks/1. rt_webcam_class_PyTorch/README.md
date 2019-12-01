@@ -1,0 +1,12 @@
+for details see  https://habr.com/ru/post/478208/
+
+____________________________________________________________________________________________________________
+My_first_CV_classification.ipynb - Jupyter notebook for training two models using PyTorch
+__________________________________________________________________________________  
+
+rt_object_class_PTH_my.py and rt_object_class_PTH_resnet18.py
+Scripts for classifying images using the OpenCV webcam and corresponding neural network models
+__________________________________________________________________________________  
+
+my_model.onnx and my_resnet18.onnx
+Models for classifying two classes: arduino and raspberry
