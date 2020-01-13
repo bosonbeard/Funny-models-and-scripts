@@ -7,3 +7,4 @@ control LED with the button for CANNY 3 tiny
 
 3.pikabu_simulate_electronics  (CannyLab 1.41) 
 A program to demonstrate the simulator of electronic logic devices
+(https://pikabu.ru/story/darom_prepodavateli_ili_s_pomoshchyu_modelirovaniya_vospolnyaem_probelyi_v_znanii_azov_yelektroniki_7163403)
