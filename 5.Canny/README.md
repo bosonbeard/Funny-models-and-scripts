@@ -10,4 +10,4 @@ A program to demonstrate the simulator of electronic logic devices
 (https://pikabu.ru/story/darom_prepodavateli_ili_s_pomoshchyu_modelirovaniya_vospolnyaem_probelyi_v_znanii_azov_yelektroniki_7163403)
 
 4.habr_car_lamp.cfd and
-5.habr_car_vent.cfd - diagrams for contol autolamp and autofan (more:https://habr.com/ru/topic/489764/)
+5.habr_car_vent.cfd - diagrams for contol lamp and fan (more:https://habr.com/ru/topic/489764/)
