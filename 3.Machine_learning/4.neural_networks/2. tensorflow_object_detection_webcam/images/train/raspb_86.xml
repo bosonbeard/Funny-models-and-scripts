@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>raspb_86.jpg</filename>
+	<path>/media/bosonbeard/Data/prog/conda/TFO15/models/research/object_detection/images/train/raspb_86.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>300</width>
+		<height>300</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>raspb</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>99</xmin>
+			<ymin>159</ymin>
+			<xmax>245</xmax>
+			<ymax>273</ymax>
+		</bndbox>
+	</object>
+</annotation>

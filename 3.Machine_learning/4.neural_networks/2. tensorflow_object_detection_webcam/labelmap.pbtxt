@@ -1,0 +1,8 @@
+item {
+    id: 1
+    name: 'duino'
+}
+item {
+    id: 2
+    name: 'raspb'
+}
