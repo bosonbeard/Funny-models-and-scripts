@@ -1,0 +1,26 @@
+<annotation>
+	<folder>test</folder>
+	<filename>raspb_3.jpg</filename>
+	<path>/media/bosonbeard/Data/prog/conda/TFO15/models/research/object_detection/images/test/raspb_3.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>300</width>
+		<height>300</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>duino</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>57</xmin>
+			<ymin>88</ymin>
+			<xmax>231</xmax>
+			<ymax>260</ymax>
+		</bndbox>
+	</object>
+</annotation>
