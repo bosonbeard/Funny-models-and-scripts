@@ -1,6 +1,4 @@
-  1. canny-raspi_uart_security_system_for_pen.cfd (CannyLab 1.42)  
-program for a simple security system with a pressure and motion sensors,
-and UART data transmission for the controller CANNY 3 tiny
+  1. canny-raspi_uart_security_system_for_pen.cfd (CannyLab 1.42)  program for a simple security system with a pressure and motion sensors, and UART data transmission for the controller CANNY 3 tiny
 
   2.arduino-raspi_uart_security_system_for_pen
 same thing but for arduino uno
