@@ -11,6 +11,10 @@ A program to demonstrate the simulator of electronic logic devices
 
 4.habr_car_lamp  - diagrams for control little automobile lamp (CannyLab 1.42) (more:https://habr.com/ru/topic/489764/)
 
+5.canny_arduino_raspi_uart_security - scripts for simple security system 
+based on Arduino UNO or Canny 3 tiny and Raspberry pi.
+
+
 P.S. To run these scripts you need to download CannyLab for free.
   
   [Download CannyLab (RU)](https://canny.ru/downloads/)  
