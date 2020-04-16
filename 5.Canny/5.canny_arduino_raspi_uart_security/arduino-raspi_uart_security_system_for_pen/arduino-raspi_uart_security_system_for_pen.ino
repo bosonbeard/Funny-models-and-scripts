@@ -3,7 +3,6 @@ byte photoPin = A0;
 void setup() {
     Serial.begin(9600);
     pinMode(photoPin, INPUT);
- //  pinMode(8, OUTPUT); 
     pinMode(5, INPUT); 
     pinMode(13, OUTPUT);
 
