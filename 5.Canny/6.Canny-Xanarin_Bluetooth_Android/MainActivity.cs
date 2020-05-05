@@ -62,14 +62,14 @@ namespace _6.Canny_Xanarin_Bluetooth_Android
 
             if (!mBluetoothAdapter.Enable())
             {
-                Toast.MakeText(this, "Bluetooth Desactivado",
+                Toast.MakeText(this, "Bluetooth Off",
                     ToastLength.Short).Show();
             }
 
             if (mBluetoothAdapter == null)
             {
                 Toast.MakeText(this,
-                    "Bluetooth No Existe o esta Ocupado", ToastLength.Short)
+                    "Bluetooth does not exist or is busy", ToastLength.Short)
                     .Show();
             }
         }
@@ -80,8 +80,6 @@ namespace _6.Canny_Xanarin_Bluetooth_Android
         {
             if (bltSwitch.Checked)
             {
-
-                System.Console.WriteLine("gclickedddd");
                 try
                 {
                     dataToSend = new Java.Lang.String("11");
