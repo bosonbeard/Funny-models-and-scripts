@@ -102,6 +102,7 @@ namespace _6.Canny_Xanarin_Bluetooth_Android
             }
             else
             {
+                status.Text = "bluetooth not connected";
                 if (btSocket.IsConnected)
                 {
                     try
@@ -174,7 +175,7 @@ namespace _6.Canny_Xanarin_Bluetooth_Android
                         {
                             
                             RunOnUiThread(() => {
-                                string valor = System.Text.Encoding.ASCII.GetString(buffer);
+                                string valor = System.Text.Encoding.ASCII.GetString(buffer).Replace("5",String.Empty);
                                 // transform string for deleate all symbols except 1-4(command from canny).
                                 string command = new string(valor.Where(char.IsDigit).ToArray());
 
