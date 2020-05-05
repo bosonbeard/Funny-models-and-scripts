@@ -1,0 +1,40 @@
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/linearLayout1">
+    <TextView
+        android:text="Reed switch status - undefined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rSwitch"
+        android:textSize="12pt" />
+    <TextView
+        android:text="End sensor status - undefined"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/EndSensor"
+        android:textSize="12pt" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/startSiren"
+        android:text="Send signal to siren" />
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bltSwitch"
+        android:checked="false"
+        android:showText="true"
+        android:text="Connect bluetooth" />
+    <TextView
+        android:text="status"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/status" />
+</LinearLayout>
