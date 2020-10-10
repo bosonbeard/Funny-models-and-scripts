@@ -20,5 +20,8 @@ Machine Analysis of information about births, registration of marriages, deaths,
 A set of data on citizens' appeals to the executive power of the city of Moscow 
 Used ML.NET framework. Datasets relevant to the 2019.
 
-4.neural_networks  
+4. neural_networks  
 Examples of machine learning using neural networks
+
+5. open_data 
+Dataset from open data. Сurrent version msc_mayor dataset.
