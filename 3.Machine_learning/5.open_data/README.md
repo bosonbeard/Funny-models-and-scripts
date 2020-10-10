@@ -20,8 +20,6 @@ Pap_form_to_mayor - - number of appeals to the Mayor on paper
  to_10K_total_VAO ... to_10K_total_YUZAO - the number of appeals per 10000 population in various districts of Moscow  
 to_10K_mayor_VAO ... to_10K_mayor_YUZAO- the number of appeals to the Mayor and the Government of Moscow for 10,000 people in various districts of the city  
 
-test_data and train_data files - edited versions of msc_appel_data2.csv  for  used in app_to_mayor_mlnet.csproj
-
 __________________________________________________________________________________  
 
-The solution  is an additional material to the [article](https://habr.com/ru/post/522898/#I)
+The .csv file is an additional material to the [article](https://habr.com/ru/post/522898/#I)
