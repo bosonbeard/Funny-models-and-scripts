@@ -14,6 +14,10 @@ A program to demonstrate the simulator of electronic logic devices
 5.canny_arduino_raspi_uart_security - scripts for simple security system 
 based on Arduino UNO or Canny 3 tiny and Raspberry pi.
 
+6.Canny-Xanarin_Bluetooth_Android - Canny 3 tiny control via bluetooth and smartphone.
+
+7.Canny_morse_code_blink Using composite function blocks and blinking morse code for controllers Canny 3 tiny and Canny 5 Nano
+
 
 P.S. To run these scripts you need to download CannyLab for free.
   
