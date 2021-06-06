@@ -1,4 +1,4 @@
-For more details visit: https://habr.com/ru/topic/edit/536122/
+For more details visit: https://habr.com/ru/topic/536122/
 
 These functional diagrams demonstrate the application of the composite functional blocks in CannyLab 2.
 
