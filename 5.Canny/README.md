@@ -18,6 +18,8 @@ based on Arduino UNO or Canny 3 tiny and Raspberry pi.
 
 7.Canny_morse_code_blink Using composite function blocks and blinking morse code for controllers Canny 3 tiny and Canny 5 Nano
 
+8.Tug_of_war_led - Canny 3 tiny pro vs Arduino nano competition
+
 
 P.S. To run these scripts you need to download CannyLab for free.
   
