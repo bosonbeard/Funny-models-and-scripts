@@ -174,6 +174,59 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "create scenario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{Voicebox_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 252732,\n    \"name\": \"Для хабра клон\",\n    \"type\": \"outgoing\",\n    \"comment\": \"\",\n    \"states\": [\n        {\n            \"type\": \"Initial\",\n            \"name\": \"State\",\n            \"x\": -668,\n            \"y\": 102,\n            \"error\": null,\n            \"success\": {\n                \"title\": \"\",\n                \"newState\": \"Вызов\"\n            }\n        },\n        {\n            \"type\": \"OutgoingCall\",\n            \"name\": \"Вызов\",\n            \"x\": -512,\n            \"y\": 205,\n            \"error\": null,\n            \"success\": {\n                \"title\": \"\",\n                \"newState\": \"Зачитать список товаров\"\n            },\n            \"phone\": \"{{numberB}}\"\n        },\n        {\n            \"type\": \"VoiceMessage\",\n            \"name\": \"Зачитать список товаров\",\n            \"x\": -307,\n            \"y\": 331,\n            \"error\": null,\n            \"success\": {\n                \"title\": \"\",\n                \"newState\": \"Подтверждение\"\n            },\n            \"detectAI\": true,\n            \"onDetectAI\": {\n                \"title\": \"\",\n                \"newState\": \"Неуспех\"\n            },\n            \"announcement\": {\n                \"type\": \"text\",\n                \"file\": \"\",\n                \"text\": \"Здравствуйте {{name}}, вы заказали {{goods}}, на сумму {{total}} рублей\"\n            },\n            \"onNoInput\": null,\n            \"onExpiry\": null,\n            \"onAParty\": null,\n            \"onInvalidInput\": null\n        },\n        {\n            \"type\": \"ReleaseCall\",\n            \"name\": \"Отбой\",\n            \"x\": -72,\n            \"y\": 988,\n            \"error\": null,\n            \"success\": null\n        },\n        {\n            \"type\": \"HTTPRequest\",\n            \"name\": \"Неуспех\",\n            \"x\": -472,\n            \"y\": 669,\n            \"error\": null,\n            \"success\": {\n                \"title\": \"\",\n                \"newState\": \"Отбой\"\n            },\n            \"method\": \"PUT\",\n            \"host\": \"habr.natelabs.ru\",\n            \"protocol\": \"https\",\n            \"port\": 443,\n            \"url\": \"/wp-json/wc/v3/orders/{orderid}\",\n            \"headers\": {\n                \"Authorization\": \"Basic Y2tfMjBiYTI0NjQ0MmUxYjU0ZThhM2RjY2Y1ZDFkY2JkZTE2N2Y5NTQ4YTpjc182NjU2ODVlYjUzMWEwN2JkY2Y3Y2FmYjcwNjY5ODQ4YmRlNmRjZjQ0\"\n            },\n            \"requestParameters\": null,\n            \"requestParametersRaw\": \"{\\\"status\\\": \\\"need_call\\\"}\",\n            \"requestParametersType\": \"raw\",\n            \"responseCodeVariable\": \"RESPONSE_CODE_1\",\n            \"responseBodyVariables\": {}\n        },\n        {\n            \"type\": \"IVR\",\n            \"name\": \"Подтверждение\",\n            \"x\": 25,\n            \"y\": 364,\n            \"error\": {\n                \"title\": \"\",\n                \"newState\": \"Дождитесь оператора\"\n            },\n            \"success\": null,\n            \"onDetectAI\": null,\n            \"awaitingTime\": 10,\n            \"announcement\": {\n                \"type\": \"text\",\n                \"file\": \"\",\n                \"text\": \"Вы подтверждаете заказ?\"\n            },\n            \"repeatCount\": 3,\n            \"detectAI\": false,\n            \"voiceInput\": true,\n            \"keyboardInput\": false,\n            \"immediateStt\": false,\n            \"inputAnalysis\": [\n                {\n                    \"success\": {\n                        \"title\": \"\",\n                        \"newState\": \"Обновить статус\"\n                    },\n                    \"dtmf\": \"\",\n                    \"words\": null,\n                    \"keywords\": [\n                        {\n                            \"name\": \"Согласие\",\n                            \"id\": \"5\",\n                            \"lost\": false\n                        }\n                    ]\n                }\n            ],\n            \"onNoInput\": {\n                \"title\": \"\",\n                \"newState\": \"Дождитесь оператора\"\n            },\n            \"onExpiry\": {\n                \"title\": \"\",\n                \"newState\": \"Дождитесь оператора\"\n            },\n            \"onAParty\": null,\n            \"onInvalidInput\": null\n        },\n        {\n            \"type\": \"HTTPRequest\",\n            \"name\": \"Обновить статус\",\n            \"x\": 91,\n            \"y\": 606,\n            \"error\": null,\n            \"success\": {\n                \"title\": \"\",\n                \"newState\": \"Спасибо за подтверждение\"\n            },\n            \"method\": \"PUT\",\n            \"host\": \"habr.natelabs.ru\",\n            \"protocol\": \"https\",\n            \"port\": 443,\n            \"url\": \"/wp-json/wc/v3/orders/{{orderid}}\",\n            \"headers\": {\n                \"Authorization\": \"Basic Y2tfMjBiYTI0NjQ0MmUxYjU0ZThhM2RjY2Y1ZDFkY2JkZTE2N2Y5NTQ4YTpjc182NjU2ODVlYjUzMWEwN2JkY2Y3Y2FmYjcwNjY5ODQ4YmRlNmRjZjQ0\"\n            },\n            \"requestParameters\": null,\n            \"requestParametersRaw\": \"{\\n    \\\"status\\\": \\\"confirmed_ordr\\\"\\n}\",\n            \"requestParametersType\": \"raw\",\n            \"responseCodeVariable\": \"RESPONSE_CODE_2\",\n            \"responseBodyVariables\": {}\n        },\n        {\n            \"type\": \"Redirection\",\n            \"name\": \"Звонок оператору\",\n            \"x\": -136,\n            \"y\": 722,\n            \"error\": null,\n            \"success\": {\n                \"title\": \"\",\n                \"newState\": \"Отбой\"\n            },\n            \"numberB\": \"{{RESPONSE_CODE_1}}\",\n            \"extension\": \"\",\n            \"callingPartyDisplay\": \"forwarder_number\",\n            \"forwardType\": \"number\",\n            \"sipUri\": \"\",\n            \"credentialInfo\": null\n        },\n        {\n            \"type\": \"VoiceMessage\",\n            \"name\": \"Дождитесь оператора\",\n            \"x\": -194,\n            \"y\": 499,\n            \"error\": null,\n            \"success\": {\n                \"title\": \"\",\n                \"newState\": \"Звонок оператору\"\n            },\n            \"detectAI\": false,\n            \"onDetectAI\": null,\n            \"announcement\": {\n                \"type\": \"text\",\n                \"file\": \"\",\n                \"text\": \"Дождитесь оператора\"\n            },\n            \"onNoInput\": null,\n            \"onExpiry\": null,\n            \"onAParty\": null,\n            \"onInvalidInput\": null\n        },\n        {\n            \"type\": \"VoiceMessage\",\n            \"name\": \"Спасибо за подтверждение\",\n            \"x\": 185,\n            \"y\": 842,\n            \"error\": null,\n            \"success\": {\n                \"title\": \"\",\n                \"newState\": \"Отбой\"\n            },\n            \"detectAI\": false,\n            \"onDetectAI\": null,\n            \"announcement\": {\n                \"type\": \"text\",\n                \"file\": \"\",\n                \"text\": \"Спасибо за подтверждение\"\n            },\n            \"onNoInput\": null,\n            \"onExpiry\": null,\n            \"onAParty\": null,\n            \"onInvalidInput\": null\n        }\n    ],\n    \"customVariables\": [\n        \"goods\",\n        \"total\",\n        \"name\",\n        \"orderid\"\n    ],\n    \"createdAt\": \"2021-12-12T22:05:44.441989969Z\",\n    \"updatedAt\": \"2021-12-12T22:05:44.442003632Z\",\n    \"settings\": {\n        \"voice\": \"omazh\",\n        \"speed\": 100,\n        \"emotion\": \"neutral\"\n    },\n    \"shareLink\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://voicebox-api.mtt.ru/v1/customers/:customer/scenarios/:scenario",
+							"protocol": "https",
+							"host": [
+								"voicebox-api",
+								"mtt",
+								"ru"
+							],
+							"path": [
+								"v1",
+								"customers",
+								":customer",
+								"scenarios",
+								":scenario"
+							],
+							"variable": [
+								{
+									"key": "customer",
+									"value": "{{Voicebox_customerid}}"
+								},
+								{
+									"key": "scenario",
+									"value": "{{Voicebox_scenario}}"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
