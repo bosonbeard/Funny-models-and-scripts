@@ -28,10 +28,10 @@ Experiments and simple programs for FreeCAD with used Python for articles on Hab
 5. Canny.
 Diagrams for programming CANNY controllers
 
-6.Phone_bot
+6. Phone_bot
 API for voice phone bot.  
 
-7.XWiki
+7. XWiki
 Macros for XWiki
  
 To view the old version, you can refer to past commits for example:  
