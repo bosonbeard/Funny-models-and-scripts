@@ -1,0 +1,54 @@
+{
+	"info": {
+		"_postman_id": "4e4e1009-5b97-4952-9c51-d6038b81b778",
+		"name": "MTT callback",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18527656"
+	},
+	"item": [
+		{
+			"name": "makeCallBackCallFollowme-habr",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{login}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{pass}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n \"id\": \"1\", \r\n \"jsonrpc\": \"2.0\", \r\n \"method\": \"makeCallBackCallFollowme\", \r\n \"params\": { \r\n   \"customer_name\": \"74900000000\", \r\n   \"b_number\": \"7900000000\", \r\n   \"client_caller_id\": \"7400000000\", \r\n   \"caller_id\" : \"7400000000\", \r\n      \"simpleCallBackFollowmeStruct\": [ \r\n     { \r\n       \"order\": 1, \r\n       \"timeout\": 40, \r\n       \"redirect_number\": \"700000000\", \r\n       \"type\": \"lineral\", \r\n       \"name\": \"sales\" \r\n     }, \r\n      { \r\n        \"order\": 2, \r\n        \"type\": \"text\", \r\n        \"value\": \"Звонок с сайта все продам ру\", \r\n        \"side\": \"A\" \r\n       } \r\n   ] \r\n } \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://webapicommon.mtt.ru/index.php",
+					"protocol": "https",
+					"host": [
+						"webapicommon",
+						"mtt",
+						"ru"
+					],
+					"path": [
+						"index.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
