@@ -1,0 +1,631 @@
+{
+	"info": {
+		"_postman_id": "7b1b06a4-9773-4a16-ab0a-7c5422b28929",
+		"name": "MTT Dostavka Habr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18527656"
+	},
+	"item": [
+		{
+			"name": "Telecom API",
+			"item": [
+				{
+					"name": "getCustomerPrompts получить список медифайлов",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{login}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"getCustomerPrompts\",\r\n    \"params\":\r\n    {\r\n        \"customer_name\": \"{{login}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gapi.mtt.ru:6443/v1/api",
+							"protocol": "https",
+							"host": [
+								"gapi",
+								"mtt",
+								"ru"
+							],
+							"port": "6443",
+							"path": [
+								"v1",
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCustomerPrompt - создать премедиа",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{login}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"createCustomerPrompt\",\r\n    \"params\":\r\n    {\r\n        \"customer_name\" : \"{{login}}\",\r\n        \"prompt_name\": \"Pablo.mp3\",\r\n        \"prompt_type\" : \"text\",\r\n        \"prompt_file_contents\": \"Пабло, экий ты дармоед, скорей неси заказ клиенту!\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gapi.mtt.ru:6443/v1/api",
+							"protocol": "https",
+							"host": [
+								"gapi",
+								"mtt",
+								"ru"
+							],
+							"port": "6443",
+							"path": [
+								"v1",
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeletecustomerPrompts - удаление медиа",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{login}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"deleteCustomerPrompt\",\r\n    \"params\":\r\n    {\r\n        \"customer_name\": \"{{login}}\",\r\n        \"prompt_name\": \"TTS_habr.mp3\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://gapi.mtt.ru:6443/v1/api",
+							"protocol": "https",
+							"host": [
+								"gapi",
+								"mtt",
+								"ru"
+							],
+							"port": "6443",
+							"path": [
+								"v1",
+								"api"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCallHistory - история зонков",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{login}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"id\": \"1\",\r\n   \"jsonrpc\": \"2.0\",\r\n   \"method\": \"getCallHistory\",\r\n   \"params\":\r\n        {   \r\n        \"sip_id\": \"{{sip_id}}\",\r\n        \"date_from\": \"25.09.2022 10:23:35\",\r\n        \"date_to\": \"30.09.2022 22:23:35\"\r\n        }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://webapicommon.mtt.ru/index.php",
+							"protocol": "https",
+							"host": [
+								"webapicommon",
+								"mtt",
+								"ru"
+							],
+							"path": [
+								"index.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "records - получение записи звонка",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{login}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rc.mtt.ru/v2/records/51B2844D_FC28243B_7B029A0B_874D476E/urls?format=mp3",
+							"protocol": "https",
+							"host": [
+								"rc",
+								"mtt",
+								"ru"
+							],
+							"path": [
+								"v2",
+								"records",
+								"51B2844D_FC28243B_7B029A0B_874D476E",
+								"urls"
+							],
+							"query": [
+								{
+									"key": "format",
+									"value": "mp3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "setSipExtensionCallControlURL - задать URL для УВВ",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{login}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"1\",\r\n    \"jsonrpc\":\"2.0\",\r\n    \"method\": \"setSipCallControlURL\",\r\n    \"params\": {\r\n        \"sip_id\": \"{{sip_id}}\",\r\n         \"url\": \"{{callURL}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.mtt.ru/ipcr/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mtt",
+								"ru"
+							],
+							"path": [
+								"ipcr",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSipSettings - получить настройки УВВ",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{login}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"1\",\r\n    \"jsonrpc\":\"2.0\",\r\n    \"method\":\"getSipSettings\",\r\n    \"params\":{\r\n        \"sip_id\":\"{{sip_id}}\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.mtt.ru/ipcr/",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mtt",
+								"ru"
+							],
+							"path": [
+								"ipcr",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "OpenCart test",
+			"item": [
+				{
+					"name": "call.php - имитация запроса Telecom API",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{login}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{pass}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"1\",\r\n    \"jsonrpc\": \"2.0\",\r\n    \"method\": \"getControlCallFollowMe\",\r\n    \"params\":\r\n    {\r\n       \"sip_id\": \"{{sip_id}}\",\r\n       \"numberA\": \"{{phoneA}}\",\r\n        \"h323_conf_id\": \"BC5F236C 5AD211E9 81BA5CB9 01FED611\"              \r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{callURL}}/call.php",
+							"host": [
+								"{{callURL}}"
+							],
+							"path": [
+								"call.php"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login - войти в API",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{Presta_key}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{callURL}}/api/",
+							"host": [
+								"{{callURL}}"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Addresses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{Presta_key}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{callURL}}/api/addresses",
+							"host": [
+								"{{callURL}}"
+							],
+							"path": [
+								"api",
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{Presta_key}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{callURL}}/api/orders?filter[current_state]=[14|15]",
+							"host": [
+								"{{callURL}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "filter[current_state]",
+									"value": "[14|15]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{Presta_key}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{callURL}}/api/orders/?display=[id_address_delivery]&filter[current_state]=[14|15]",
+							"host": [
+								"{{callURL}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								""
+							],
+							"query": [
+								{
+									"key": "display",
+									"value": "[id_address_delivery]"
+								},
+								{
+									"key": "filter[current_state]",
+									"value": "[14|15]"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{Presta_key}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{callURL}}/api/orders",
+							"host": [
+								"{{callURL}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
