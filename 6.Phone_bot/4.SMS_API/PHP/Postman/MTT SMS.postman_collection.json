@@ -1,0 +1,419 @@
+{
+	"info": {
+		"_postman_id": "83033974-5b36-4d1b-ab05-00e1c103983a",
+		"name": "MTT SMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18527656"
+	},
+	"item": [
+		{
+			"name": "SendSms - отправить СМС",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number\": \"{{mtt_number}}\",\r\n    \"destination\": \"79*****\",\r\n    \"text\": \"some text for Habr!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mtt_url}}/v1/SendSms",
+					"host": [
+						"{{mtt_url}}"
+					],
+					"path": [
+						"v1",
+						"SendSms"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMessagesHistoryList - история",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"{{mtt_login}}\"\r\n\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mtt_url}}/v1/GetMessagesHistoryList",
+					"host": [
+						"{{mtt_url}}"
+					],
+					"path": [
+						"v1",
+						"GetMessagesHistoryList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMessagesHistoryList (с фильтрами) -  история с фильтрами",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"{{mtt_login}}\",\r\n    \"number\":\"{{mtt_number}}\",\r\n    \"event_date_gt\":\"2022-11-29T21:08:27.00Z\",\r\n    \"event_date_lt\":\"2022-11-30T21:08:27.00Z\",\r\n    \"direction\":\"incoming\",\r\n    \"delivery_status\":\"delivered\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mtt_url}}/v1/GetMessagesHistoryList",
+					"host": [
+						"{{mtt_url}}"
+					],
+					"path": [
+						"v1",
+						"GetMessagesHistoryList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMessagesHistoryCount - количество",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"{{mtt_login}}\",\r\n    \"number\": \"{{mtt_number}}\"\r\n\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mtt_url}}/v1/GetMessagesHistoryCount",
+					"host": [
+						"{{mtt_url}}"
+					],
+					"path": [
+						"v1",
+						"GetMessagesHistoryCount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMessagesHistoryCount с фильтрами",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"{{mtt_login}}\",\r\n    \"number\": \"{{mtt_number}}\",\r\n    \"direction\": \"incoming\",\r\n    \"event_date_gt\":\"2022-12-01T20:01:49.807Z\",\r\n    \"event_date_lt\":\"2022-12-07T20:01:49.807Z\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mtt_url}}/v1/GetMessagesHistoryCount",
+					"host": [
+						"{{mtt_url}}"
+					],
+					"path": [
+						"v1",
+						"GetMessagesHistoryCount"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetNumbеrs  - информация о номерах",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"{{mtt_login}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mtt_url}}/v1/GetNumbеrs",
+					"host": [
+						"{{mtt_url}}"
+					],
+					"path": [
+						"v1",
+						"GetNumbеrs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetNumberSettings   - задать настройки номера",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"number\": \"{{mtt_number}}\",\r\n    \"event_url\": \"http://******/bl.php\",\r\n    \"event_headers\": {\"Authorization\": \"some token\", \"key\": \"value\"}\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mtt_url}}/v1/SetNumberSettings",
+					"host": [
+						"{{mtt_url}}"
+					],
+					"path": [
+						"v1",
+						"SetNumberSettings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBlackList  - получить черный список",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"{{mtt_login}}\",\r\n    \"limit\": 10,\r\n    \"offset\":0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mtt_url}}/v1/GetBlackList",
+					"host": [
+						"{{mtt_url}}"
+					],
+					"path": [
+						"v1",
+						"GetBlackList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DelBlackList - получить черный список Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"{{mtt_login}}\",\r\n     \"numbers\": [\r\n    \"79*******\"\r\n    ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mtt_url}}/v1/DelBlackList",
+					"host": [
+						"{{mtt_url}}"
+					],
+					"path": [
+						"v1",
+						"DelBlackList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "АddBlackList  - добавить в черный список Copy",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"customer_name\": \"{{mtt_login}}\",\r\n   \"numbers\":[\r\n        \"7*********\"\r\n    ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{mtt_url}}/v1/AddBlackList",
+					"host": [
+						"{{mtt_url}}"
+					],
+					"path": [
+						"v1",
+						"AddBlackList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Симулировать отправку уведомления",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{mtt_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"level\":\"debug\",\"project\":\"dummy\",\"server\":\"clients\",\"request\":{\"method\":\"POST\",\"requestURI\":\"/receive_event\",\"headers\":{\"Authorization\":[\"some token\"],\"Content-Length\":[\"507\"],\"Content-Type\":[\"application/octet-stream\"],\"Key\":[\"value78\"],\"L5d-Client-Id\":[\"default.ms.serviceaccount.identity.linkerd.cluster.local\"],\"L5d-Dst-Canonical\":[\"integration-tests.ms.svc.cluster.local:8080\"],\"User-Agent\":[\"fasthttp\"]},\"body\":\"{\\\"event_id\\\":432631709192704166,\\\"message_id\\\":432631709159181756,\\\"event_date\\\":1667398193,\\\"event_date_human\\\":\\\"2022-11-02T14:09:53Z\\\",\\\"text\\\":\\\"Мышь medallion and smiled. Every day she thought about the medallion. And every day she thought about Will Turner. Was it really eight years? She heard her father. \\\",\\\"segments_count\\\":2,\\\"direction\\\":\\\"outgoing\\\",\\\"sender\\\":\\\"79600000000\\\",\\\"receiver\\\":\\\"79120913846\\\",\\\"delivery_status\\\":\\\"queued\\\",\\\"bill_status\\\":\\\"prebilled\\\",\\\"charged_amount\\\":0,\\\"message_channel\\\":\\\"sms\\\"}\"},\"time\":1667398193470,\"caller\":\"/app/clients/handlers/handlers.go:50\",\"message\":\"received\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://*******/bl.php",
+					"protocol": "http",
+					"host": [
+						"mttest",
+						"h1n",
+						"ru"
+					],
+					"path": [
+						"bl.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

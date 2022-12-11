@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0nscgsd" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.5.1" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="Process_04rsywb" isExecutable="true">
+    <bpmn:endEvent id="Event_0v9wcoc" name="Игорь полил цветы">
+      <bpmn:incoming>Flow_1przfom</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="Activity_1q3ipwo" name="Отправить СМС Игорю" camunda:type="external" camunda:topic="send-sms">
+      <bpmn:incoming>Flow_0ygpo8y</bpmn:incoming>
+      <bpmn:outgoing>Flow_0o2xhcy</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:intermediateCatchEvent id="Event_1mn72jt" name="Каждый день в 9:00">
+      <bpmn:incoming>Flow_1dioksi</bpmn:incoming>
+      <bpmn:outgoing>Flow_0ygpo8y</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0nviglg">
+        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R9/2023-01-01T06:00:00Z/P1</bpmn:timeCycle>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_0ygpo8y" sourceRef="Event_1mn72jt" targetRef="Activity_1q3ipwo" />
+    <bpmn:intermediateCatchEvent id="Event_0us1b6e" name="Ждем 10 мин.">
+      <bpmn:incoming>Flow_0g1a5lu</bpmn:incoming>
+      <bpmn:outgoing>Flow_01xf31l</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_0oq7p0j">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10M</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:startEvent id="Event_07y18ld">
+      <bpmn:outgoing>Flow_1dioksi</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1dioksi" sourceRef="Event_07y18ld" targetRef="Event_1mn72jt" />
+    <bpmn:manualTask id="Activity_1blysht" name="Отправить СМС в ответ">
+      <bpmn:incoming>Flow_0o2xhcy</bpmn:incoming>
+      <bpmn:incoming>Flow_174w9be</bpmn:incoming>
+      <bpmn:outgoing>Flow_0g1a5lu</bpmn:outgoing>
+    </bpmn:manualTask>
+    <bpmn:sequenceFlow id="Flow_0g1a5lu" sourceRef="Activity_1blysht" targetRef="Event_0us1b6e" />
+    <bpmn:sequenceFlow id="Flow_0o2xhcy" sourceRef="Activity_1q3ipwo" targetRef="Activity_1blysht" />
+    <bpmn:exclusiveGateway id="Gateway_1qsbwaq" default="Flow_174w9be">
+      <bpmn:incoming>Flow_0tktye7</bpmn:incoming>
+      <bpmn:outgoing>Flow_174w9be</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1przfom</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_174w9be" name="Нет" sourceRef="Gateway_1qsbwaq" targetRef="Activity_1blysht" />
+    <bpmn:sequenceFlow id="Flow_1przfom" name="есть СМС" sourceRef="Gateway_1qsbwaq" targetRef="Event_0v9wcoc">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">#{sent}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:serviceTask id="Activity_1blmg6b" name="Проверяем СМС от Игоря" camunda:type="external" camunda:topic="check-sms">
+      <bpmn:incoming>Flow_01xf31l</bpmn:incoming>
+      <bpmn:outgoing>Flow_0tktye7</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_01xf31l" sourceRef="Event_0us1b6e" targetRef="Activity_1blmg6b" />
+    <bpmn:sequenceFlow id="Flow_0tktye7" sourceRef="Activity_1blmg6b" targetRef="Gateway_1qsbwaq" />
+    <bpmn:textAnnotation id="TextAnnotation_0k52vul">
+      <bpmn:text>Напоминаем полить растения</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1c9f56a" sourceRef="Activity_1q3ipwo" targetRef="TextAnnotation_0k52vul" />
+    <bpmn:textAnnotation id="TextAnnotation_09xe6lu">
+      <bpmn:text>Игорь поливает цветы и присылает в ответ  любым текстом</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TextAnnotation_0uelc75">
+      <bpmn:text>Проверяем в истории СМС от Игоря</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_11pu83c" sourceRef="Activity_1blysht" targetRef="TextAnnotation_09xe6lu" />
+    <bpmn:association id="Association_0kb587o" sourceRef="TextAnnotation_0uelc75" targetRef="Activity_1blmg6b" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_04rsywb">
+      <bpmndi:BPMNShape id="Event_0v9wcoc_di" bpmnElement="Event_0v9wcoc">
+        <dc:Bounds x="932" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="919" y="225" width="64" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0f1s2am_di" bpmnElement="Activity_1q3ipwo">
+        <dc:Bounds x="250" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1mn72jt_di" bpmnElement="Event_1mn72jt">
+        <dc:Bounds x="172" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="152" y="225" width="77" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_13k7jqg_di" bpmnElement="Event_0us1b6e">
+        <dc:Bounds x="552" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="534" y="225" width="72" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_07y18ld_di" bpmnElement="Event_07y18ld">
+        <dc:Bounds x="172" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0i3bs12_di" bpmnElement="Activity_1blysht">
+        <dc:Bounds x="420" y="160" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1qsbwaq_di" bpmnElement="Gateway_1qsbwaq" isMarkerVisible="true">
+        <dc:Bounds x="795" y="175" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_0mx343i" bpmnElement="Activity_1blmg6b">
+        <dc:Bounds x="640" y="160" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0k52vul_di" bpmnElement="TextAnnotation_0k52vul">
+        <dc:Bounds x="350" y="51" width="99.99656781987919" height="54.91488193300385" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_09xe6lu_di" bpmnElement="TextAnnotation_09xe6lu">
+        <dc:Bounds x="505" y="51" width="130" height="83" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_0uelc75_di" bpmnElement="TextAnnotation_0uelc75">
+        <dc:Bounds x="730" y="50" width="110" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0ygpo8y_di" bpmnElement="Flow_0ygpo8y">
+        <di:waypoint x="208" y="200" />
+        <di:waypoint x="250" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1dioksi_di" bpmnElement="Flow_1dioksi">
+        <di:waypoint x="190" y="138" />
+        <di:waypoint x="190" y="182" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0g1a5lu_di" bpmnElement="Flow_0g1a5lu">
+        <di:waypoint x="520" y="200" />
+        <di:waypoint x="552" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0o2xhcy_di" bpmnElement="Flow_0o2xhcy">
+        <di:waypoint x="350" y="200" />
+        <di:waypoint x="420" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_174w9be_di" bpmnElement="Flow_174w9be">
+        <di:waypoint x="820" y="225" />
+        <di:waypoint x="820" y="300" />
+        <di:waypoint x="470" y="300" />
+        <di:waypoint x="470" y="240" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="636" y="282" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1przfom_di" bpmnElement="Flow_1przfom">
+        <di:waypoint x="845" y="200" />
+        <di:waypoint x="932" y="200" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="864" y="182" width="51" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_01xf31l_di" bpmnElement="Flow_01xf31l">
+        <di:waypoint x="588" y="200" />
+        <di:waypoint x="640" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0tktye7_di" bpmnElement="Flow_0tktye7">
+        <di:waypoint x="740" y="200" />
+        <di:waypoint x="795" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_1c9f56a_di" bpmnElement="Association_1c9f56a">
+        <di:waypoint x="330" y="160" />
+        <di:waypoint x="370" y="106" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_11pu83c_di" bpmnElement="Association_11pu83c">
+        <di:waypoint x="495" y="160" />
+        <di:waypoint x="512" y="134" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0kb587o_di" bpmnElement="Association_0kb587o">
+        <di:waypoint x="766" y="105" />
+        <di:waypoint x="727" y="160" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
